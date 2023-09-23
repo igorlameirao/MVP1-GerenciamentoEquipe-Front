@@ -3,10 +3,19 @@ import axios, { AxiosInstance } from 'axios';
 
 
 export class Service {
-    private nomeController = "equipes";
+    private nomeController = "usuarios";
 
-    public CriarTime(data: any) {
+    public CriarUsuario(data: any) {
         return api.post(`${this.nomeController}`,  data);
+    }
+    
+    public async BuscarEndereco(cep){
+
+          const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+          const data = response.data;
+        // return api.get(`${this.nomeController}/BuscarEndereco`, {
+        //     params: { cep }
+        // });
     }
 
     public list() {

@@ -36,7 +36,7 @@ const App = () => {
     service.excluir(id).then(response => {
       setData(data.filter(x => x.id !== id));
     }).catch(err => {
-      alert("Erro ao excluir equipe")
+      alert("Erro ao excluir usuario")
     });
   };
 
@@ -48,7 +48,7 @@ const App = () => {
       fontSize="20px"
       fontFamily="poppins"
     >
-      <Box maxW={900} w="100%" h="100vh" py={10} px={2}>
+      <Box w="80%" h="100vh" py={10} px={2}>
         <Button colorScheme="blue" onClick={() => [setDataEdit({}), onOpen()]}>
           Novo Cadastro
         </Button>
@@ -60,25 +60,25 @@ const App = () => {
                   Nome
                 </Th>
                 <Th maxW={isMobile ? 5 : 150} fontSize="20px">
-                  Apelido
+                  Sobrenome
                 </Th>
                 <Th maxW={isMobile ? 5 : 200} fontSize="20px">
-                  Cor Predominante
+                  CEP
                 </Th>
                 <Th p={0}></Th>
                 <Th p={0}></Th>
               </Tr>
             </Thead>
             <Tbody>
-              {data.length ? data.map(({ id, nome, apelido, cor_predominante }, index) => (
+              {data.length ? data.map(({ id, nome, sobrenome, cep, logradouro, complemento, bairro }, index) => (
                 <Tr key={index} cursor="pointer" hover={{ bg: "gray.100" }}>
                   <Td maxW={isMobile ? 5 : 100}>{nome}</Td>
-                  <Td maxW={isMobile ? 5 : 100}>{apelido}</Td>
-                  <Td maxW={isMobile ? 5 : 100}>{cor_predominante}</Td>
+                  <Td maxW={isMobile ? 5 : 100}>{sobrenome}</Td>
+                  <Td maxW={isMobile ? 5 : 100}>{cep}</Td>
                   <Td p={0}>
                     <EditIcon
                       fontSize={20}
-                      onClick={() => [setDataEdit({id, nome, apelido, cor_predominante, index }),
+                      onClick={() => [setDataEdit({id, nome, sobrenome, cep, logradouro, complemento, bairro, index }),
                       onOpen()]}
                     />
                   </Td>
@@ -91,6 +91,7 @@ const App = () => {
               ))
                 : <Tr>
                   <Td>Nenhum registro Cadastrado</Td>
+                  <Td></Td>
                   <Td></Td>
                   <Td></Td>
                 </Tr>
